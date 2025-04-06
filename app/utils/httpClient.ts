@@ -11,11 +11,10 @@ export async function getTicker(market: string): Promise<Ticker> {
   }
   return ticker;
 }
-const x = getTickers();
 
-export async function getTickers(): Promise<number> {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  return 1;
+export async function getTickers(): Promise<Ticker[]> {
+  const response = await axios.get(`${BASE_URL}/tickers`);
+  return response.data
 }
 
 export async function getDepth(market: string): Promise<Depth> {
